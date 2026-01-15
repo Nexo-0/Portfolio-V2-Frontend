@@ -1,52 +1,113 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { AppBar, Toolbar, Button, Box, Typography, Container } from '@mui/material'; // MUI Imports
+
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
 import { Projects } from './sections/Projects';
 import { Skills } from './sections/Skills';
 import { Contact } from './sections/Contact';
 
-// 1. IMPORT YOUR LOGO HERE
+// IMPORT YOUR LOGO
 import logo from './assets/Images/Studio-Project.png';
 
 const queryClient = new QueryClient();
+
+// Define Colors to match your theme
+const themeColors = {
+  background: 'rgba(10, 10, 10, 0.8)', // Dark background
+  border: 'rgba(255, 255, 255, 0.05)',  // Subtle border
+  textSecondary: '#8892b0',             // Gray text
+  primary: '#0aff9d',                   // Neon Green (Adjust to match your specific primary color)
+  glassBlur: 'blur(12px)',              // Glass effect
+};
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <main className="antialiased selection:bg-primary/30">
         
-        {/* Navigation Bar */}
-        <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-lg border-b border-white/5 px-6 py-4 flex justify-between items-center">
-          
-          {/* 2. FIXED LOGO SECTION */}
-          <div className="font-bold text-xl text-primary flex items-center gap-3">
-             <img 
-               src={logo} 
-               alt="Nexo-0 Logo" 
-               className="h-8 w-auto object-contain" // Controls height
-             /> 
-             Nexo-0
-          </div>
+        {/* --- MATERIAL UI NAVBAR --- */}
+        <AppBar 
+          position="fixed" 
+          elevation={0}
+          sx={{
+            backgroundColor: themeColors.background,
+            backdropFilter: themeColors.glassBlur,
+            borderBottom: `1px solid ${themeColors.border}`,
+            zIndex: 50
+          }}
+        >
+          <Container maxWidth="xl">
+            <Toolbar disableGutters sx={{ justifyContent: 'space-between', minHeight: '70px' }}>
+              
+              {/* Logo Section */}
+              <Box display="flex" alignItems="center" gap={2}>
+                 <img 
+                   src={logo} 
+                   alt="Nexo-0 Logo" 
+                   style={{ height: '32px', width: 'auto', objectFit: 'contain' }} 
+                 />
+                 <Typography 
+                   variant="h6" 
+                   component="div" 
+                   sx={{ 
+                     fontWeight: 'bold', 
+                     color: themeColors.primary,
+                     letterSpacing: '0.5px'
+                   }}
+                 >
+                   Nexo-0
+                 </Typography>
+              </Box>
 
-          <div className="hidden md:flex gap-8 text-sm font-medium text-secondary">
-             <a href="#about" className="hover:text-primary transition-colors">About</a>
-             <a href="#projects" className="hover:text-primary transition-colors">Projects</a>
-             <a href="#skills" className="hover:text-primary transition-colors">Skills</a>
-             <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
-          </div>
-        </nav>
+              {/* Desktop Menu Links */}
+              <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 4 }}>
+                {['About', 'Projects', 'Skills', 'Contact'].map((item) => (
+                  <Button
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    sx={{
+                      color: themeColors.textSecondary,
+                      textTransform: 'capitalize',
+                      fontWeight: 500,
+                      fontSize: '0.9rem',
+                      '&:hover': {
+                        color: themeColors.primary,
+                        backgroundColor: 'transparent'
+                      }
+                    }}
+                  >
+                    {item}
+                  </Button>
+                ))}
+              </Box>
 
-        {/* Section Order */}
+            </Toolbar>
+          </Container>
+        </AppBar>
+
+        {/* --- MAIN SECTIONS --- */}
+        {/* We keep these as they are since they contain complex logic */}
         <Hero />
         <About />
         <Projects />
         <Skills />
         <Contact />
         
-        {/* Footer */}
-        <footer className="py-8 text-center text-secondary text-sm border-t border-white/5 bg-surface/20">
-          <p>© 2026 Kunal Petare. All Rights Reserved.</p>
-        </footer>
+        {/* --- MATERIAL UI FOOTER --- */}
+        <Box 
+          component="footer" 
+          sx={{
+            py: 4,
+            textAlign: 'center',
+            backgroundColor: 'rgba(255,255,255,0.02)',
+            borderTop: `1px solid ${themeColors.border}`
+          }}
+        >
+          <Typography variant="body2" sx={{ color: themeColors.textSecondary }}>
+            © 2026 Kunal Petare. All Rights Reserved.
+          </Typography>
+        </Box>
 
       </main>
     </QueryClientProvider>
