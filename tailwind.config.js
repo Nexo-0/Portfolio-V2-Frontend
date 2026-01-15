@@ -7,18 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#0f172a", // Slate 950
-        surface: "#1e293b",    // Slate 800
-        primary: "#38bdf8",    // Sky 400
-        secondary: "#94a3b8",  // Slate 400
-        accent: "#6366f1",     // Indigo 500
+        background: "#0a0a0a",
+        surface: "#1a1a1a",
+        secondary: "#a1a1aa",
+        // CHANGE THIS TO GOLD:
+        primary: "#FFD700", // Classic Gold
+        // OR try "#F59E0B" for a deeper Amber/Gold
+        accent: "#FBBF24",  // Lighter Gold for gradients
       },
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-      },
-      animation: {
-        'spin-slow': 'spin 3s linear infinite',
-      }
     },
   },
   plugins: [],
