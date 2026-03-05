@@ -18,36 +18,47 @@ export const Contact = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-
-      const res = await fetch("https://portfolio-v2-backend-ecka.onrender.com/api/contact", {
+  try {
+    const res = await fetch(
+      "https://portfolio-v2-backend-ecka.onrender.com/api/contact",
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(formData)
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.success) {
+
+      alert("✅ Email sent successfully! I will get back to you soon.");
+
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
       });
 
-      const data = await res.json();
+    } else {
 
-      if (data.success) {
-        alert("Message sent successfully!");
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: ""
-        });
-      }
+      alert("❌ Failed to send message. Please try again.");
 
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong");
     }
-  };
+
+  } catch (error) {
+
+    console.error(error);
+    alert("⚠️ Server error. Please try again later.");
+
+  }
+};
 
   return (
     <SectionWrapper id="contact" className="mb-20">
