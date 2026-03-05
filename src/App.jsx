@@ -4,7 +4,7 @@ import { About } from './sections/About';
 import { Projects } from './sections/Projects';
 import { Skills } from './sections/Skills';
 import { Contact } from './sections/Contact';
-import logo from './assets/Images/Studio-Project.png';
+import logo from './assets/Images/projects/Studio-Project.png';
 
 const queryClient = new QueryClient();
 

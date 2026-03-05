@@ -3,12 +3,12 @@ import { ExternalLink, Star, GitFork, Github, Folder } from 'lucide-react';
 import { useGithubRepos } from '../hooks/useGithubRepos';
 
 // Import Images
-import amazonImg from '../assets/Images/amazon.png';
-import weatherImg from '../assets/Images/Weather.jpg';
-import carImg from '../assets/Images/CarVilla.png';
-import codeImg from '../assets/Images/CodeCrafters.png';
+import amazonImg from '../assets/Images/projects/amazon.png';
+import weatherImg from '../assets/Images/projects/Weather.jpg';
+import carImg from '../assets/Images/projects/CarVilla.png';
+import codeImg from '../assets/Images/projects/CodeCrafters.png';
 // 1. IMPORT THE EXPENSE IMAGE
-import expenseImg from '../assets/Images/ExpenseTracker.png';
+import expenseImg from '../assets/Images/projects/ExpenseTracker.png';
 
 export const Projects = () => {
   
