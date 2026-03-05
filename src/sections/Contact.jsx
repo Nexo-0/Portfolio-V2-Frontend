@@ -11,6 +11,8 @@ export const Contact = () => {
     message: ""
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -18,47 +20,52 @@ export const Contact = () => {
     });
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    const res = await fetch(
-      "https://portfolio-v2-backend-ecka.onrender.com/api/contact",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
+    setLoading(true);
+
+    try {
+
+      const res = await fetch(
+        "https://portfolio-v2-backend-ecka.onrender.com/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        }
+      );
+
+      const data = await res.json();
+
+      if (data.success) {
+
+        alert("✅ Email sent successfully! I will get back to you soon.");
+
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: ""
+        });
+
+      } else {
+
+        alert("❌ Failed to send message. Please try again.");
+
       }
-    );
 
-    const data = await res.json();
+    } catch (error) {
 
-    if (data.success) {
-
-      alert("✅ Email sent successfully! I will get back to you soon.");
-
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
-      });
-
-    } else {
-
-      alert("❌ Failed to send message. Please try again.");
+      console.error(error);
+      alert("⚠️ Server error. Please try again later.");
 
     }
 
-  } catch (error) {
-
-    console.error(error);
-    alert("⚠️ Server error. Please try again later.");
-
-  }
-};
+    setLoading(false);
+  };
 
   return (
     <SectionWrapper id="contact" className="mb-20">
@@ -90,7 +97,13 @@ const handleSubmit = async (e) => {
 
             <div className="flex items-center gap-4">
               <Linkedin className="text-primary"/>
-              <a href="https://www.linkedin.com/in/kunal-petare">LinkedIn</a>
+              <a
+                href="https://www.linkedin.com/in/kunal-petare"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
             </div>
 
             <div className="flex items-center gap-4">
@@ -101,7 +114,7 @@ const handleSubmit = async (e) => {
           </div>
         </div>
 
-        {/* FORM */}
+        {/* Contact Form */}
 
         <form
           onSubmit={handleSubmit}
@@ -116,7 +129,8 @@ const handleSubmit = async (e) => {
               onChange={handleChange}
               type="text"
               placeholder="Name"
-              className="bg-background border p-3 rounded-lg text-white"
+              required
+              className="bg-background border border-white/10 p-3 rounded-lg text-white"
             />
 
             <input
@@ -125,7 +139,8 @@ const handleSubmit = async (e) => {
               onChange={handleChange}
               type="email"
               placeholder="Email"
-              className="bg-background border p-3 rounded-lg text-white"
+              required
+              className="bg-background border border-white/10 p-3 rounded-lg text-white"
             />
 
           </div>
@@ -136,7 +151,7 @@ const handleSubmit = async (e) => {
             onChange={handleChange}
             type="text"
             placeholder="Subject"
-            className="w-full bg-background border p-3 rounded-lg text-white"
+            className="w-full bg-background border border-white/10 p-3 rounded-lg text-white"
           />
 
           <textarea
@@ -145,14 +160,16 @@ const handleSubmit = async (e) => {
             onChange={handleChange}
             rows="4"
             placeholder="Message"
-            className="w-full bg-background border p-3 rounded-lg text-white"
+            required
+            className="w-full bg-background border border-white/10 p-3 rounded-lg text-white"
           />
 
           <button
             type="submit"
-            className="bg-primary text-background font-bold py-3 px-8 rounded-lg w-full"
+            disabled={loading}
+            className="bg-primary text-background font-bold py-3 px-8 rounded-lg w-full hover:bg-primary/90 transition-all"
           >
-            Send Message
+            {loading ? "Sending..." : "Send Message"}
           </button>
 
         </form>
