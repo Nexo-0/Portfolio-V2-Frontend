@@ -1,16 +1,26 @@
-# React + Vite
+# Nexo's Professional Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my professional portfolio! Below you will find various projects that showcase my skills and experiences in web development.
 
-Currently, two official plugins are available:
+## About Me
+I am a passionate developer with experience in building dynamic and responsive web applications. My focus is on creating user-friendly and visually appealing interfaces.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Projects
 
-## React Compiler
+### Project 1: [Project Name]
+- **Description**: Brief description of the project.
+- **Technologies Used**: List of technologies used.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Project 2: [Project Name]
+- **Description**: Brief description of the project.
+- **Technologies Used**: List of technologies used.
 
-## Expanding the ESLint configuration
+### Project 3: [Project Name]
+- **Description**: Brief description of the project.
+- **Technologies Used**: List of technologies used.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Contact
+Feel free to reach out through my [LinkedIn](your-linkedin-url) or [GitHub](your-github-url).  
+I would love to connect!  
+
+Thank you for visiting my portfolio!
